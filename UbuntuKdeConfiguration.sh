@@ -136,7 +136,7 @@ echo "Hey,"
 echo "thank you for using this script."
 sleep 2
 echo "Contact me on the GitHub page for feedback."
-echo "github.com/Azarilh/ArchLinuxKdeInstallScript"
+echo "github.com/Azarilh/UbuntuKdeConfigurationScript"
 sleep 2
 echo "Have a nice day!"
 sleep 2
