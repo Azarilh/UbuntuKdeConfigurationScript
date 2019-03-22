@@ -6,3 +6,5 @@ This script will install packages written in the './Resources/extra' file. Toile
 Systemd-boot will substitute Grub as boot manager.<br>
 GPG keys and some repositories will be added. You can chage 'em from their folders './sources.list.d' and './trusted.gpg.d'.<br>
 The secondary script './Resources/extra2.sh' will be executed at last. You can edit it afore it will be executed.
+
+NOTE: The script is still not ready to configure Systemd-boot! After you used this script, if you delete Grub you will not be able to boot up any OS, probably.
