@@ -84,7 +84,8 @@ echo "Systemd-boot: ready."
 echo
 echo "Press ENTER to continue to the next phase."
 read continue
- 
+clear
+
 toilet "2/5 — Adding GPG keys..." -f term --gay
 cp -r trusted.gpg.d /etc/apt/
 echo "GPG keys added."
@@ -123,7 +124,7 @@ sh Resources/extra2.sh
 echo "Secondary script executed."
  
 clear
-toilet DONE! -f term --gay
+toilet DONE! --gay
 notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up $distro has been done."
 echo "
 Remember to uninstall Grub after you checked that Systemd-boot works with this command:
