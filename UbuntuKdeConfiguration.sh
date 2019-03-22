@@ -142,5 +142,5 @@ echo "Have a nice day!"
 sleep 2
 echo
 echo "Press ENTER to exit."
-read
+read continue
 exit
