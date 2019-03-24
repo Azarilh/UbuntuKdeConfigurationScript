@@ -1,7 +1,7 @@
 #!/bin/bash
  
 clear
-echo "UbuntuKdeConfiguration.sh — Version 1.01"
+echo "UbuntuKdeConfiguration.sh — Version 1.0.1"
 sleep 1
  
 clear
