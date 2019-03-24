@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Editing '/etc/environment'."
+echo "Editing '/etc/environment'..."
 echo '
 # Enable ibus.
 export GTK_IM_MODULE=ibus
@@ -25,3 +25,43 @@ export LC_MESSAGES="en_IE.UTF-8"
 
 # KDE file chooser for GTK apps
 export GTK_USE_PORTAL=1' >> /etc/environment
+
+echo "Correcting some colors for the app Tagaini Jigho for dark themes..."
+echo ".mainwriting a {
+	color: #fff;
+	text-decoration: none;
+}" > /usr/share/tagainijisho/detailed_kanjidic2.css
+echo "table {
+	margin: 0px;
+	padding: 0px;
+}
+
+tr {
+	margin: 0px;
+	padding: 0px;
+}
+
+td {
+	margin: 0px;
+	padding: 0px;
+}
+
+.subinfo {
+	background-color: #d00;
+	width: 100%;
+}
+
+.subinfo .title {
+	background-color: #101114;
+	font-weight: bold;
+}
+
+.subinfo .contents {
+	background-color: #101114;
+}
+
+.notes {
+	width: 100%;
+	padding: 5px;
+	background-color: #ffff88;
+}" > /usr/share/tagainijisho/detailed_default.css
