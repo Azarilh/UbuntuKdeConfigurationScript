@@ -3,7 +3,7 @@
 This script auto configures Ubuntu with KDE.<br>
 It's made for personal use, but if someone want to use it, they're free to do so.<br><br>
 This script will install packages written in the './Resources/extra' file. Vim will also be installed, ye can remove it afterwards.<br>
-~~Systemd-boot will substitute Grub as boot manager.~~ (Not anymore since version 1.1.0, but you can use the 1.0.1 should do that, see the first note below.)<br>
+~~Systemd-boot will substitute Grub as boot manager.~~ (Not anymore since version 1.1.0, but the 1.0.1 should do that, see the first note below tho'.)<br>
 GPG keys and some repositories will be added. You can chage 'em from their folders './sources.list.d' and './trusted.gpg.d'.<br>
 The secondary script './Resources/extra2.sh' will be executed at last. You can edit it afore it will be executed.<br><br>
 
