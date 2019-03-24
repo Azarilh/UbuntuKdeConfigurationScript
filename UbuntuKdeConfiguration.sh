@@ -1,12 +1,14 @@
 #!/bin/bash
  
 clear
-echo "UbuntuKdeConfiguration.sh — Version 1.01"
-sleep 1
- 
-clear
+echo -e "setf 8\nsetb 4" | tput -S
+echo -n "UbuntuKdeConfiguration.sh — v1.1.0"
+echo -e "setf 8\nsetb 0" | tput -S && echo
+
+echo
+
 echo "This script is supposed to be located under '/UbuntuKdeConfiguration' (into root).
-It also needs to be executed as root
+It also needs to be executed as root.
 IMPORTANT: Using this script is YOUR full responsability!
 I don't assume any responsability in regards of the usage of my script.
 Using it, you agree that it's your full responsability whatever will happen to your computer device.
@@ -39,81 +41,103 @@ echo
 apt install libnotify-bin
 echo "Libnotify-bin ready."
 echo
-echo "Vim will be now opened. Write your distribuition's name without spaces and special characters.
+echo -e "setf 3\nsetb 0" | tput -S
+echo -n "Vim will be now opened. Write your distribuition's name without spaces and special characters.
 Press ENTER to open Vim."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 vim distro.tmp
 distro=$(cat distro.tmp)
 sleep 1
 clear
  
-clear
-toilet "1/5 — Setting up bootctl..." -f term --gay
-bootctl install
-cd /
-mkdir boot/loader
-cd boot/loader
-echo "default $distro
-timeout " > loader.conf
-echo
-echo "'loader.conf' will now be opened with Vim.
-After 'timeout' write the timeout ye desire in seconds. For example 'timeout 4'.
-This is how long you want to wait until bootctl selects automatically the boot option.
-Press ENTER to open Vim."
-read continue
-vim loader.conf
-mkdir entries
-cd entries
-echo "title $distro
-linux /vmlinuz-linux
-initrd /initramfs-linux.img
-options root=PARTUUID=ASD rw
+#clear
+#echo -e "setf 8\nsetb 3" | tput -S
+#echo -n "1/5 — Setting up bootctl..."
+#echo -e "setf 8\nsetb 0" | tput -S && echo
+#bootctl install
+#cd /
+#mkdir boot/loader
+#cd boot/loader
+#echo "default $distro
+#timeout " > loader.conf
+#echo
+#echo "'loader.conf' will now be opened with Vim.
+#After 'timeout' write the timeout ye desire in seconds. For example 'timeout 4'.
+#This is how long you want to wait until bootctl selects automatically the boot option.
+#Press ENTER to open Vim."
+#read continue
+#vim loader.conf
+#mkdir entries
+#cd entries
+#echo "title $distro
+#linux /vmlinuz-linux
+#initrd /initramfs-linux.img
+#options root=PARTUUID=ASD rw
  
 # Press ALT+SHIFT+: and write 'r !blkid' then press ENTER.
 # Substitute 'ASD' with the root's PARTUUID." >> $distro.conf
-echo
-echo "'$distro.conf' will now be opened with Vim.
-Substitute 'ASD' with the correct PARTUUID of your root partition.
-To find it out, on vim press ALT+SHIFT+: and write 'r !blkid' then press ENTER.
-Press ENTER to open Vim."
-read continue
-vim $distro.conf
-cd /
-cd UbuntuKdeConfigurationScript
-echo "Systemd-boot: ready."
-echo
-echo "Press ENTER to continue to the next phase."
+#echo
+#echo "'$distro.conf' will now be opened with Vim.
+#Substitute 'ASD' with the correct PARTUUID of your root partition.
+#To find it out, on vim press ALT+SHIFT+: and write 'r !blkid' then press ENTER.
+#Press ENTER to open Vim."
+#read continue
+#vim $distro.conf
+#cd /
+#cd UbuntuKdeConfigurationScript
+#echo "Systemd-boot: ready."
+#echo
+#echo "Press ENTER to continue to the next phase."
+#read continue
+#clear
+
+
+echo -e "setf 8\nsetb 3" | tput -S
+echo -n "1/4 — Adding GPG keys..."
+echo -e "setf 8\nsetb 0" | tput -S && echo
+cp -r trusted.gpg.d /etc/apt/
+echo ___
+echo -e "setf 7\nsetb 0" | tput -S
+echo -n "GPG keys added."
+echo -e "setf 4\nsetb 0" | tput -S && echo
+echo -n "Press ENTER to continue to the next phase."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 clear
 
-toilet "2/5 — Adding GPG keys..." -f term --gay
-cp -r trusted.gpg.d /etc/apt/
-echo "GPG keys added."
-echo
-echo "Press ENTER to continue to the next phase."
-read continue
-clear
- 
-toilet "3/5 — Adding repositories..." -f term --gay
+echo -e "setf 8\nsetb 3" | tput -S
+echo -n "2/4 — Adding repositories..."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 cp -r sources.list.d /etc/apt/
-echo "Repositories added."
-echo
-echo "Press ENTER to continue to the next phase."
+echo ___
+echo -e "setf 7\nsetb 0" | tput -S
+echo -n "Repositories added."
+echo -e "setf 4\nsetb 0" | tput -S && echo
+echo -n "Press ENTER to continue to the next phase."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 clear
- 
-toilet "4/5 — Installing packages..." -f term --gay
+
+echo -e "setf 8\nsetb 3" | tput -S
+echo -n "3/4 — Installing packages..."
+echo -e "setf 8\nsetb 0" | tput -S && echo 
 apt update
 echo "Repositories loaded."
 extra=$(cat Resources/extra)
 apt install $extra
-echo "Packages installed."
-echo
-echo "Press ENTER to continue to the next phase."
+echo ___
+echo -e "setf 7\nsetb 0" | tput -S
+echo -n "Packages installed."
+echo -e "setf 4\nsetb 0" | tput -S && echo
+echo -n "Press ENTER to continue to the next phase."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 clear
- 
-toilet "5/5 — Executing secondary script..." -f term --gay
+
+echo -e "setf 8\nsetb 3" | tput -S
+echo -n "4/4 — Executing secondary script..."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 chmod 777 Resources/extra2.sh
 echo "'Resources/extra2.sh' will be now opened with Vim.
 Add your own script, if ye want. It will be executed immediately after you close Vim.
@@ -121,14 +145,19 @@ Press ENTER to open Vim."
 read continue
 vim Resources/extra2.sh
 sh Resources/extra2.sh
-echo "Secondary script executed."
- 
+echo ___
+echo -e "setf 7\nsetb 0" | tput -S
+echo -n "Secondary script executed."
+echo -e "setf 4\nsetb 0" | tput -S && echo
+echo -n "Press ENTER to continue."
+echo -e "setf 8\nsetb 0" | tput -S && echo
+read continue
 clear
-toilet DONE! --gay
+
+echo -e "setf 8\nsetb 1" | tput -S
+echo -n FINISHED
+echo -e "setf 7\nsetb 0" | tput -S && echo
 notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up $distro has been done."
-echo "
-Remember to uninstall Grub after you checked that Systemd-boot works with this command:
-'apt purge grub*'."
 rm *.tmp
 sleep 2
 echo
@@ -141,6 +170,9 @@ sleep 2
 echo "Have a nice day!"
 sleep 2
 echo
+
+echo -e "setf 4\nsetb 0" | tput -S
 echo "Press ENTER to exit."
+echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 exit
