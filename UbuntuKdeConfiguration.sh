@@ -21,9 +21,8 @@ sleep 2
 echo "Press ENTER to continue."
 read continue
 clear
-echo "This script will install packages written in the './Resources/extra' file. Toilet and Vim will also be installed, ye can remove 'em afterwards.
-Systemd-boot will substitute Grub as boot manager.
-GPG keys and some repositories will be added. You can chage 'em from their folders './sources.list.d' and './trusted.gpg.d'.
+echo "This script will install packages written in the './Resources/extra' file. Toilet and Vim will also be installed, ye can remove them afterwards.
+GPG keys and some repositories will be added. You can chage them from their folders './sources.list.d' and './trusted.gpg.d'.
 The secondary script './Resources/extra2.sh' will be executed at last. You can edit it afore it will be executed.
  
 Press ENTER to continue."
@@ -33,25 +32,12 @@ clear
 echo "Initialisation..."
 echo
 apt install toilet
-echo "Toilet ready."
 echo
 apt install vim
-echo "Vim ready."
 echo
 apt install libnotify-bin
-echo "Libnotify-bin ready."
 echo
-echo -e "setf 3\nsetb 0" | tput -S
-echo -n "Vim will be now opened. Write your distribuition's name without spaces and special characters.
-Press ENTER to open Vim."
-echo -e "setf 8\nsetb 0" | tput -S && echo
-read continue
-vim distro.tmp
-distro=$(cat distro.tmp)
-sleep 1
-clear
  
-#clear
 #echo -e "setf 8\nsetb 3" | tput -S
 #echo -n "1/5 — Setting up bootctl..."
 #echo -e "setf 8\nsetb 0" | tput -S && echo
@@ -90,74 +76,70 @@ clear
 #echo
 #echo "Press ENTER to continue to the next phase."
 #read continue
-#clear
 
 
 echo -e "setf 8\nsetb 3" | tput -S
-echo -n "1/4 — Adding GPG keys..."
+echo -n "1/3 - Upgrading repositories..."
 echo -e "setf 8\nsetb 0" | tput -S && echo
+echo -n "Copying GPG keys..."
+echo -e "setf 7\nsetb 0" | tput -S && echo
 cp -r trusted.gpg.d /etc/apt/
-echo ___
-echo -e "setf 7\nsetb 0" | tput -S
-echo -n "GPG keys added."
-echo -e "setf 4\nsetb 0" | tput -S && echo
-echo -n "Press ENTER to continue to the next phase."
-echo -e "setf 8\nsetb 0" | tput -S && echo
-read continue
-clear
-
-echo -e "setf 8\nsetb 3" | tput -S
-echo -n "2/4 — Adding repositories..."
-echo -e "setf 8\nsetb 0" | tput -S && echo
+echo -e "setf 8\nsetb 0" | tput -S 
+echo -n "Copying repositories..." 
+echo -e "setf 7\nsetb 0" | tput -S && echo
 cp -r sources.list.d /etc/apt/
-echo ___
-echo -e "setf 7\nsetb 0" | tput -S
-echo -n "Repositories added."
+echo -e "setf 8\nsetb 0" | tput -S
+echo -n ___
 echo -e "setf 4\nsetb 0" | tput -S && echo
 echo -n "Press ENTER to continue to the next phase."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
-clear
+echo && echo && echo
 
 echo -e "setf 8\nsetb 3" | tput -S
-echo -n "3/4 — Installing packages..."
-echo -e "setf 8\nsetb 0" | tput -S && echo 
+echo -n "2/3 — Installing packages..."
+echo -e "setf 7\nsetb 0" | tput -S && echo 
 apt update
-echo "Repositories loaded."
-extra=$(cat Resources/extra)
-apt install $extra
-echo ___
-echo -e "setf 7\nsetb 0" | tput -S
-echo -n "Packages installed."
+echo -e "setf 8\nsetb 0" | tput -S
+echo "About to install these packages:"
+echo -e "setf 7\nsetb 0" | tput -S && echo
+cat Resources/extra && echo ___
+echo -e "setf 8\nsetb 0" | tput -S && echo
+echo "Press ENTER to install them."
+read continue
+echo -e "setf 7\nsetb 0" | tput -S && echo
+apt install $(cat Resources/extra)
+echo -n ___
 echo -e "setf 4\nsetb 0" | tput -S && echo
 echo -n "Press ENTER to continue to the next phase."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
-clear
+echo && echo && echo
 
 echo -e "setf 8\nsetb 3" | tput -S
-echo -n "4/4 — Executing secondary script..."
+echo -n "3/3 — Executing secondary script..."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 chmod 777 Resources/extra2.sh
 echo "'Resources/extra2.sh' will be now opened with Vim.
-Add your own script, if ye want. It will be executed immediately after you close Vim.
+Add your own script, if you want. It will be executed immediately after you close Vim.
 Press ENTER to open Vim."
 read continue
 vim Resources/extra2.sh
-sh Resources/extra2.sh
-echo ___
 echo -e "setf 7\nsetb 0" | tput -S
+sh Resources/extra2.sh
+echo -e "setf 8\nsetb 0" | tput -S
+echo -n ___
 echo -n "Secondary script executed."
 echo -e "setf 4\nsetb 0" | tput -S && echo
 echo -n "Press ENTER to continue."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
-clear
+echo && echo && echo
 
 echo -e "setf 8\nsetb 1" | tput -S
 echo -n FINISHED
 echo -e "setf 7\nsetb 0" | tput -S && echo
-notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up $distro has been done."
+notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up your distro has been done."
 rm *.tmp
 sleep 2
 echo
