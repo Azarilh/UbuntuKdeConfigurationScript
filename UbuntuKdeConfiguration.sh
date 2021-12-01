@@ -37,6 +37,16 @@ apt install vim
 echo
 apt install libnotify-bin
 echo
+echo "path-exclude /usr/share/doc/*
+# we need to keep copyright files for legal reasons
+path-include /usr/share/doc/*/copyright
+# if you also want to remove the man pages uncomment the next line
+#path-exclude /usr/share/man/*
+path-exclude /usr/share/groff/*
+path-exclude /usr/share/info/*
+# lintian stuff is small, but really unnecessary
+path-exclude /usr/share/lintian/*
+path-exclude /usr/share/linda/*" > /etc/dpkg/dpkg.cfg.d/01_nodoc
  
 #echo -e "setf 8\nsetb 3" | tput -S
 #echo -n "1/5 — Setting up bootctl..."
