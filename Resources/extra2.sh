@@ -55,6 +55,8 @@ export QT_IM_MODULE=fcitx
 export DISPLAY=:0.0
 QT4_IM_MODULE=fcitx" > /home/azarilh/.bashrc
 
+journalctl --vacuum-size=200M
+
 # echo "Correcting some colors for the app Tagaini Jisho for dark themes..."
 # echo ".mainwriting a {
 # 	color: #fff;
