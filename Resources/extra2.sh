@@ -98,7 +98,7 @@ journalctl --vacuum-size=200M
 # }" > /usr/share/tagainijisho/detailed_default.css
 
 
-# echo "Editing '/etc/systemd/system.conf'..."
-# echo "
-# DefaultTimeoutStartSec=10s
-# DefaultTimeoutStopSec=10s" >> /etc/systemd/system.conf
+echo "Editing '/etc/systemd/system.conf'..."
+echo "
+DefaultTimeoutStartSec=3s
+DefaultTimeoutStopSec=3s" >> /etc/systemd/system.conf
