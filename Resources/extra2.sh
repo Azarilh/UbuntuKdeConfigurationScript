@@ -44,8 +44,8 @@ alias re="sudo apt remove"                            #remove packages
 alias pu="sudo apt purge"                             #purge packages
 alias ar="sudo apt autoremove"                        #remove outdated packages
 alias upgrade-kubuntu="sudo do-release-upgrade -m desktop -f DistUpgradeViewKDE"
-alias drivetestwrite="sudo /sbin/sysctl -w vm.drop_caches=3 && sync; dd if=/dev/z>
-alias drivetestread="sudo /sbin/sysctl -w vm.drop_caches=3 && dd if=tempfile of=/>
+alias drivetestwrite="sudo /sbin/sysctl -w vm.drop_caches=3 && sync; dd if=/dev/z>"
+alias drivetestread="sudo /sbin/sysctl -w vm.drop_caches=3 && dd if=tempfile of=/>"
 alias owo="neofetch"
 
 export SUDO_ASKPASS=/home/azarilh/Programs/Scripts/Variables/askpass.sh
@@ -53,7 +53,7 @@ export GTK_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export QT_IM_MODULE=fcitx
 export DISPLAY=:0.0
-QT4_IM_MODULE=fcitx' > /home/azarilh/.bashrc
+QT4_IM_MODULE=fcitx' >> /home/azarilh/.bashrc
 
 journalctl --vacuum-size=200M
 
