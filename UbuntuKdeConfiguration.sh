@@ -37,6 +37,7 @@ apt install vim
 echo
 apt install libnotify-bin
 echo
+echo "Disabling installation of unnecessary documentations..."
 echo "path-exclude /usr/share/doc/*
 # we need to keep copyright files for legal reasons
 path-include /usr/share/doc/*/copyright
@@ -91,17 +92,17 @@ path-exclude /usr/share/linda/*" > /etc/dpkg/dpkg.cfg.d/01_nodoc
 echo -e "setf 8\nsetb 3" | tput -S
 echo -n "1/3 - Upgrading repositories..."
 echo -e "setf 8\nsetb 0" | tput -S && echo
-echo -n "Copying GPG keys..."
+echo "Copying GPG keys..."
 echo -e "setf 7\nsetb 0" | tput -S && echo
 cp -r trusted.gpg.d /etc/apt/
 echo -e "setf 8\nsetb 0" | tput -S 
-echo -n "Copying repositories..." 
+echo  "Copying repositories..." 
 echo -e "setf 7\nsetb 0" | tput -S && echo
 cp -r sources.list.d /etc/apt/
 echo -e "setf 8\nsetb 0" | tput -S
-echo -n ___
+echo ___
 echo -e "setf 4\nsetb 0" | tput -S && echo
-echo -n "Press ENTER to continue to the next phase."
+echo "Press ENTER to continue to the next phase."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 echo && echo && echo
@@ -119,9 +120,9 @@ echo "Press ENTER to install them."
 read continue
 echo -e "setf 7\nsetb 0" | tput -S && echo
 apt install $(cat Resources/extra)
-echo -n ___
+echo ___
 echo -e "setf 4\nsetb 0" | tput -S && echo
-echo -n "Press ENTER to continue to the next phase."
+echo "Press ENTER to continue to the next phase."
 echo -e "setf 8\nsetb 0" | tput -S && echo
 read continue
 echo && echo && echo
@@ -137,9 +138,9 @@ read continue
 vim Resources/extra2.sh
 echo -e "setf 7\nsetb 0" | tput -S
 sh Resources/extra2.sh
-echo -e "setf 8\nsetb 0" | tput -S
-echo -n ___
-echo -n "Secondary script executed."
+echo -e "setf 8\nsetb 0" | tput -S && echo
+echo ___
+echo "Secondary script executed."
 echo -e "setf 4\nsetb 0" | tput -S && echo
 echo -n "Press ENTER to continue."
 echo -e "setf 8\nsetb 0" | tput -S && echo
@@ -149,11 +150,11 @@ echo && echo && echo
 echo -e "setf 8\nsetb 1" | tput -S
 echo -n FINISHED
 echo -e "setf 7\nsetb 0" | tput -S && echo
-notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up your distro has been done."
+# notify-send --expire-time=3000 UbuntuKdeConfiguration.sh "Settin' up your distro has been done."
 rm *.tmp
 sleep 2
 echo
-echo "Hey,"
+echo "Heyyyyy,"
 echo "thank you for using this script."
 sleep 2
 echo "Contact me on the GitHub page for feedback."
